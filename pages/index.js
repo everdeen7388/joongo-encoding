@@ -20,12 +20,6 @@ export default function Home() {
                         <p>&rarr; 클릭하면 네이버 카페로 바로 이동합니다.</p>
                     </a>
                 </div>
-                <div className={styles.grid}>
-                    <a href="/api/noa/아이패드" className={styles.card}>
-                        <h3>"아이패드"</h3>
-                        <p>&rarr; 클릭하면 아이패드 검색결과로 조회수, 좋아요수, 구독자, 채널 개설일이 다운로드 됩니다.</p>
-                    </a>
-                </div>
             </main>
 
             <footer>
