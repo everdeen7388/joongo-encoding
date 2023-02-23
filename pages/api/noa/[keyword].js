@@ -43,6 +43,7 @@ async function searchYoutube(keyword, apiKey) {
     const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
     const viewCount = videoInfo.statistics.viewCount;
     const likeCount = videoInfo.statistics.likeCount;
+    const videoPublishedAt = DateTime.fromISO(videoInfo.snippet.publishedAt).toFormat('yyyy-MM-dd HH:mm:ss');
     const channelTitle = videoInfo.snippet.channelTitle;
     const channelSubscribers = videoInfo.statistics.subscriberCount;
     const channelCreationDate = DateTime.fromISO(videoInfo.snippet.publishedAt).toFormat('yyyy-MM-dd');
@@ -52,6 +53,7 @@ async function searchYoutube(keyword, apiKey) {
       url: videoUrl,
       viewCount: viewCount,
       likeCount: likeCount,
+      videoPublishedAt: videoPublishedAt,
       channelTitle: channelTitle,
       channelSubscribers: channelSubscribers,
       channelCreationDate: channelCreationDate,
