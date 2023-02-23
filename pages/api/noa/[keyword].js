@@ -7,7 +7,25 @@ export default async function handler(req, res) {
 
   try {
     const videoData = await searchYoutube(keyword, apiKey);
-    res.status(200).json(videoData);
+    const csvString = stringify(videoData, {
+      header: true,
+      columns: {
+        title: 'Title',
+        url: 'Video URL',
+        viewCount: 'View Count',
+        likeCount: 'Like Count',
+        channelTitle: 'Channel Title',
+        channelSubscribers: 'Channel Subscribers',
+        channelCreationDate: 'Channel Creation Date',
+        videoPublishedAt: 'Video Published At'
+      }
+    });
+
+    const fileName = `${keyword}_videos_${DateTime.local().toFormat('yyyyMMddHHmmss')}.csv`;
+
+    res.setHeader('Content-disposition', `attachment; filename=${fileName}`);
+    res.set('Content-Type', 'text/csv');
+    res.status(200).send(csvString);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });
